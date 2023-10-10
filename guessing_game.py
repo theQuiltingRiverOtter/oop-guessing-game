@@ -17,8 +17,12 @@ class GuessingGame:
         self.__guesses += 1
 
     def guess(self, user_guess: int):
-        if type(user_guess) != int:
-            raise TypeError("user guess must be type integer")
+        try:
+            user_guess = int(user_guess)
+
+        except:
+            print("That input isn't valid")
+            return
         if user_guess < self.__start or user_guess > self.__end:
             return f"out of bounds, please type a number beteen {self.__start} and {self.__end}"
         self.increment_guesses()
@@ -59,10 +63,10 @@ class GuessingGameApplication:
                     f"Oops! Your last guess ({self.__last_guess}) was {self.__last_result}"
                 )
                 print()
-            self.__last_guess = int(input("Enter your guess: "))
+            self.__last_guess = input("Enter your guess: ")
             self.__last_result = self.__game.guess(self.__last_guess)
         self.end_game()
 
 
-game = GuessingGameApplication()
+game = GuessingGameApplication(1, 1000)
 game.execute()
