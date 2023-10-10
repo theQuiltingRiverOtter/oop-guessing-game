@@ -47,6 +47,10 @@ class GuessingGameApplication:
         print("Let's play a guessing game")
         print(f"Guess a number between {self.__start} and {self.__end}")
 
+    def end_game(self):
+        print(f"{self.__last_guess} was correct!")
+        print(f"It took you {self.__game.guesses} guesses")
+
     def execute(self):
         self.intro()
         while not self.__game.solved:
@@ -57,8 +61,7 @@ class GuessingGameApplication:
                 print()
             self.__last_guess = int(input("Enter your guess: "))
             self.__last_result = self.__game.guess(self.__last_guess)
-        print(f"{self.__last_guess} was correct!")
-        print(f"It took you {self.__game.guesses} guesses")
+        self.end_game()
 
 
 game = GuessingGameApplication()
